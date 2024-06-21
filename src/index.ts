@@ -112,7 +112,7 @@ function nextTranslate(config: NextConfigWithNextTranslate = {}): NextConfig {
       config.module.rules.push({
         test,
         use: {
-          loader: 'next-translate-plugin/loader',
+          loader: '@popsa-hq/next-translate-plugin/loader',
           options: {
             basePath,
             // Normalize slashes in a file path to be posix/unix-like forward slashes

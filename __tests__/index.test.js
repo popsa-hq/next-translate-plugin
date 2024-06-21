@@ -35,7 +35,7 @@ describe('nextTranslate', () => {
             rules: expect.arrayContaining([
               expect.objectContaining({
                 use: expect.objectContaining({
-                  loader: 'next-translate-plugin/loader',
+                  loader: '@popsa-hq/next-translate-plugin/loader',
                   options: expect.objectContaining({
                     appFolder: 'src/app/',
                     pagesFolder: 'src/pages/',
