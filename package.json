@@ -20,12 +20,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/aralroca/next-translate-plugin.git"
+    "url": "https://github.com/popsa-hq/next-translate-plugin"
   },
   "author": {
     "name": "Aral Roca Gòmez",
     "email": "contact@aralroca.com"
   },
+  "contributors": [
+    {
+      "name": "Iulian-Constantin Marcu",
+      "email": "contact@iulianmarcu.me",
+      "url": "https://iulianmarcu.me"
+    }
+  ],
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./index.d.ts",
