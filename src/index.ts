@@ -12,18 +12,20 @@ import {
   existPages,
   existLocalesFolderWithNamespaces,
 } from './utils'
-import { LoaderOptions } from './types'
+import { LoaderOptions, NextConfigWithNextTranslate } from './types'
 import type { I18nConfig, NextI18nConfig } from 'next-translate'
 
 const test = /\.(tsx|ts|js|mjs|jsx)$/
 
-function nextTranslate(nextConfig: NextConfig = {}): NextConfig {
-  let basePath = pkgDir()
+function nextTranslate(config: NextConfigWithNextTranslate = {}): NextConfig {
+  const { nextTranslate = {}, ...nextConfig } = config
 
   // NEXT_TRANSLATE_PATH env is supported both relative and absolute path
-  basePath = path.resolve(
-    path.relative(basePath, process.env.NEXT_TRANSLATE_PATH || '.')
-  )
+  const basePath =
+    nextTranslate.basePath ??
+    path.resolve(
+      path.relative(pkgDir(), process.env.NEXT_TRANSLATE_PATH || '.')
+    )
 
   const nextConfigI18n: NextI18nConfig = nextConfig.i18n || {}
   let {
@@ -72,15 +74,17 @@ function nextTranslate(nextConfig: NextConfig = {}): NextConfig {
     }
   }
 
-  let nextConfigWithI18n: NextConfig = hasAppJs ? nextConfig : {
-    ...nextConfig,
-    i18n: {
-      locales,
-      defaultLocale,
-      domains,
-      localeDetection,
-    },
-  }
+  let nextConfigWithI18n: NextConfig = hasAppJs
+    ? nextConfig
+    : {
+        ...nextConfig,
+        i18n: {
+          locales,
+          defaultLocale,
+          domains,
+          localeDetection,
+        },
+      }
 
   return {
     ...nextConfigWithI18n,
